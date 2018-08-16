@@ -7,23 +7,23 @@ from django.http import HttpResponse
 
 def students_list(request):
 	students = (
-	{'id': 1,
-	'first_name': u'Віталій',
-	'last_name': u'Подоба',
-	'ticket': 235,
-	'image': 'img/me.jpeg'},
-	{'id': 2,
-	'first_name': u'Корост',
-	'last_name': u'Андрій',
-	'ticket': 2123,
-    'image': 'img/podoba3.jpg'},
-	{'id': 3,
-	'first_name': u'Притула',
-	'last_name': u'Тарас',
-	'ticket': 5332,
-    'image': 'img/piv.png'},
+	    {'id': 1,
+	     'first_name': u'Віталій',
+	     'last_name': u'Подоба',
+	     'ticket': 235,
+	     'image': 'img/me.jpeg'},
+	    {'id': 2,
+	     'first_name': u'Корост',
+	     'last_name': u'Андрій',
+	     'ticket': 2123,
+         'image': 'img/podoba3.jpg'},
+	    {'id': 3,
+	     'first_name': u'Притула',
+	     'last_name': u'Тарас',
+	     'ticket': 5332,
+         'image': 'img/piv.png'},
 	)
-	return render(request, 'students/students_list.html', {})
+	return render(request, 'students/students_list.html', {'students': students})
 
 
 
@@ -37,8 +37,7 @@ def students_edit(request, sid):
 def students_delete(request, sid):
     return HttpResponse('<h1>Delete Student %s</h1>' % sid)
 
-def students_list(request):
-	return render(request, 'students/students_list.html', {})
+
 
     #Views for Groups
 def groups_list(request):
