@@ -87,3 +87,5 @@ STATIC_URL = '/static/'
 # Context processor
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("django.core.context_processors.request",)
+
+PORTAL_URL = 'http://127.0.0.1:8000'
