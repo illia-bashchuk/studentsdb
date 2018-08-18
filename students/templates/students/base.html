@@ -37,9 +37,12 @@
     <div class="row" id="sub-header">
       <div class="col-xs-12">
         <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" {% if request.path ==  {{ url "home" }}  %} class="active" {% endif %}><a href="{% url "home" %}">Студенти</a></li>
-          <li role="presentation" {% if '/journal' in request.path %} class="active" {% endif %}><a href="/journal">Відвідування</a></li>
-          <li role="presentation" {% if '/groups' in request.path %} class="active" {% endif %}><a href="{% url "groups" %}">Групи</a></li>
+          {% url "home" as url_home%}
+          {% url "journal" as url_journal%}
+          {% url "groups" as url_groups%}
+          <li role="presentation" {% if request.path == url_home %} class="active" {% endif %}><a href="{% url "home" %}">Студенти</a></li>
+          <li role="presentation" {% if request.path == url_journal %}  class="active" {% endif %}><a href="/journal">Відвідування</a></li>
+          <li role="presentation" {% if request.path == url_groups %}  class="active" {% endif %}><a href="{% url "groups" %}">Групи</a></li>
         </ul>
       </div>
     </div>
