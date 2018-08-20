@@ -88,7 +88,7 @@ STATIC_URL = '/static/'
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
     "django.core.context_processors.request",
-    "studentsdb.context_processors.students_proc",
+    "studentsdb.context_processors.students_processors",
 )
 
-PORTAL_URL = 'http://127.0.0.1:8000'
+#PORTAL_URL = 'http://127.0.0.1:8000'

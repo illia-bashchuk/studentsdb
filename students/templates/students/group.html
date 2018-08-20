@@ -1,33 +1,25 @@
-{% extends "students/base.html" %}
+{% extends "students/base.html" %} {% load static from staticfiles %} {% block meta_title %}Студенти{% endblock meta_title %} {% block title %}Групи{% endblock title %} {% block content %}
 
-{% load static from staticfiles %}
+<a href="{% url "groups_add" %}" class="btn btn-primary">Додати Групу</a>
+</div>
+<!-- Start Students Listing -->
+<table class="table">
+  <thead>
+    <tr>
+      <th><a href="#">#</a></th>
 
-{% block meta_title %}Студенти{% endblock meta_title %}
+      <th><a href="#">Назва &uarr;</a></th>
+      <th><a href="#">Староста</a></th>
 
-{% block title %}Групи{% endblock title %}
+      <th>Дії</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for group in groups %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
 
-{% block content %}
-
-            <a href="{% url "groups_add" %}" class="btn btn-primary">Додати Групу</a>
-            </div>
-        <!-- Start Students Listing -->
-        <table class="table">
-          <thead>
-            <tr>
-              <th><a href="#">#</a></th>
-
-              <th><a href="#">Назва &uarr;</a></th>
-              <th><a href="#">Староста</a></th>
-
-              <th>Дії</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for group in groups %}
-            <tr>
-              <td>{{ forloop.counter }}</td>
-
-              <td><a href="{% url "groups_edit" group.id %}">{{ group.group_name }}</td>
+      <td><a href="{% url "groups_edit" group.id %}">{{ group.group_name }}</td>
               <td><a href="{% url "groups_edit" group.id %}">{{ group.leader_name }}</td>
 
               <td>
@@ -38,26 +30,26 @@
                   </button>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
-                    <li><a href="/journal/{{ group.id }}">Відвідування</a></li>
-                    <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            {% endfor %}
+        <li><a href="/journal/{{ group.id }}">Відвідування</a></li>
+        <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
+        </ul>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
 
 
-          </tbody>
-        </table>
-        <!-- End Students Listing -->
+  </tbody>
+</table>
+<!-- End Students Listing -->
 
-        <nav>
-          <ul class="pagination">
+<nav>
+  <ul class="pagination">
 
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">Далі</a></li>
+    <li><a href="#">1</a></li>
+    <li class="active"><a href="#">2</a></li>
+    <li><a href="#">Далі</a></li>
 
-          </ul>
-        </nav>
+  </ul>
+</nav>
 {% endblock content %}
