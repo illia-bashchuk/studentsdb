@@ -1,4 +1,19 @@
-{% extends "students/base.html" %} {% load static from staticfiles %} {% block meta_title %}Студенти{% endblock meta_title %} {% block title %}Групи{% endblock title %} {% block content %}
+{% extends "students/base.html" %}
+{% load static from staticfiles %}
+{% block meta_title %}Студенти{% endblock meta_title %}
+{% block title %}Групи{% endblock title %}
+{% block logo %}Сервіс Обліку Студентів{% endblock logo %}
+{% block drop_down %}
+<div class="col-xs-4" id="group-selector">
+  <strong>Група:</strong>
+  <select>
+    <option value="">Усі Студенти</option>
+    <option value="">Мтм-21, Віталій Подоба</option>
+    <option value="">Мтм-22, Андрій Петров</option>
+  </select>
+</div>
+{% endblock drop_down %}
+{% block content %}
 
 <a href="{% url "groups_add" %}" class="btn btn-primary">Додати Групу</a>
 </div>
@@ -53,3 +68,10 @@
   </ul>
 </nav>
 {% endblock content %}
+{% block footer %}
+<div class="row" id="footer">
+  <div class="col-xs-12">
+    &copy; 2014 Сервіс Обліку Студентів
+  </div>
+</div>
+{% endblock footer %}
