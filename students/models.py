@@ -29,7 +29,7 @@ class Student(models.Model):
     photo = models.ImageField(
         blank=True,
         verbose_name=u"Фото",
-        null=True),
+        null=True)
     ticket = models.CharField(
         max_length=256,
         blank=False,
