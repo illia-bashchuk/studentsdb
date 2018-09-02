@@ -6,6 +6,11 @@ from ..models import Student
 
 def students_list(request):
     students = Student.objects.all()
+    if request.get_full_path() == "/":
+        #redirect request.GET on its copy(deep copy) which I will amend
+        request.GET = request.GET.copy()
+        #assign 'order_by' value 'last_name'
+        request.GET.__setitem__('order_by', 'last_name')
     # try to order students list
     order_by = request.GET.get('order_by', '')
     if order_by in ('last_name', 'first_name', 'ticket'):
