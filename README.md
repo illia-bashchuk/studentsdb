@@ -1,0 +1,2 @@
+# studentsdb
+Django training project
