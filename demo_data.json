@@ -1,0 +1,230 @@
+[
+{
+    "fields": {
+        "username": "illia",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2019-02-22T14:15:12.829Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$cyLY0hfuJOCq$e9RAOlakF5D26IqRBW0fxOV4xMAq0mZH2DU+7FwSWl4=",
+        "email": "ilvasilich@gmail.com",
+        "date_joined": "2018-08-30T17:55:45.290Z"
+    },
+    "model": "auth.user",
+    "pk": 1
+},
+{
+    "fields": {
+        "first_name": "\u0410\u043d\u0434\u0440\u0456\u0439",
+        "last_name": "A\u043d\u0434\u0432\u0440\u0439",
+        "middle_name": "\u0410\u043d\u0434\u0440\u0456\u0439\u043e\u0432\u0438\u0447",
+        "photo": "./piv.png",
+        "notes": "asdf",
+        "student_group": null,
+        "birthday": "2018-09-10",
+        "ticket": "1"
+    },
+    "model": "students.student",
+    "pk": 4
+},
+{
+    "fields": {
+        "first_name": "\u0411\u043e\u0433\u0434\u0430\u043d",
+        "last_name": "\u0411\u043e\u0433\u0434\u0430\u043d\u043e\u0432",
+        "middle_name": "\u0411\u043e\u0433\u0434\u0430\u043d\u043e\u0432\u0438\u0447",
+        "photo": "./piv_QDEYejx.png",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2018-09-01",
+        "ticket": "2"
+    },
+    "model": "students.student",
+    "pk": 5
+},
+{
+    "fields": {
+        "first_name": "\u0412\u0430\u0441\u0438\u043b\u044c",
+        "last_name": "\u0412\u0430\u043b\u044c\u043a\u043e",
+        "middle_name": "\u0412\u0430\u0441\u0438\u043b\u044c\u043e\u0432\u0438\u0447",
+        "photo": "./piv_Q2y2sBl.png",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2018-09-12",
+        "ticket": "3"
+    },
+    "model": "students.student",
+    "pk": 6
+},
+{
+    "fields": {
+        "first_name": "\u0413\u0440\u0438\u0433\u043e\u0440\u0456\u0439",
+        "last_name": "\u0413\u0440\u0438\u0433\u043e\u0440\u0435\u043d\u043a\u043e",
+        "middle_name": "\u041a\u0440\u0438\u0433\u043e\u0440\u043e\u0432\u0438\u0447",
+        "photo": "./podoba3_Ae3AXQq.jpg",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2018-09-24",
+        "ticket": "4"
+    },
+    "model": "students.student",
+    "pk": 7
+},
+{
+    "fields": {
+        "first_name": "\u0406\u0412\u0410\u043f\u0456\u0432\u0430\u043f",
+        "last_name": "\u0406\u0432\u0430\u043f\u0456",
+        "middle_name": "\u0410\u041f\u0410\u0432\u0456\u043f",
+        "photo": "./podoba3_OlZDmV8.jpg",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2018-09-11",
+        "ticket": "5"
+    },
+    "model": "students.student",
+    "pk": 8
+},
+{
+    "fields": {
+        "first_name": "dfg",
+        "last_name": "dfg",
+        "middle_name": "df",
+        "photo": "./me.jpeg",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2018-08-13",
+        "ticket": "6"
+    },
+    "model": "students.student",
+    "pk": 9
+},
+{
+    "fields": {
+        "first_name": "\u0456\u0432\u0430\u0456\u0432\u0430",
+        "last_name": "\u0444\u0456\u0432\u0430",
+        "middle_name": "\u0444\u0456\u0432\u0430",
+        "photo": "./piv_Xuurh1J.png",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2018-09-18",
+        "ticket": "7"
+    },
+    "model": "students.student",
+    "pk": 10
+},
+{
+    "fields": {
+        "first_name": "\u0444\u0456\u0432\u0430\u0444",
+        "last_name": "\u0444\u0456\u0432\u0430\u0444",
+        "middle_name": "\u0444\u0456\u0432\u0430\u0444",
+        "photo": "./piv_GpBPW4q.png",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2018-09-12",
+        "ticket": "8"
+    },
+    "model": "students.student",
+    "pk": 11
+},
+{
+    "fields": {
+        "first_name": "dfsf",
+        "last_name": "sdf",
+        "middle_name": "sdf",
+        "photo": "./piv_QhOPvLW.png",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2018-09-14",
+        "ticket": "9"
+    },
+    "model": "students.student",
+    "pk": 12
+},
+{
+    "fields": {
+        "first_name": "asdfa",
+        "last_name": "asdf",
+        "middle_name": "",
+        "photo": "",
+        "notes": "asdfadf",
+        "student_group": null,
+        "birthday": "2019-02-22",
+        "ticket": "5615"
+    },
+    "model": "students.student",
+    "pk": 13
+},
+{
+    "fields": {
+        "first_name": "asdfa",
+        "last_name": "asdf",
+        "middle_name": "",
+        "photo": "",
+        "notes": "asdfdfsa",
+        "student_group": null,
+        "birthday": "2019-02-22",
+        "ticket": "5615"
+    },
+    "model": "students.student",
+    "pk": 14
+},
+{
+    "fields": {
+        "first_name": "asdfasdf",
+        "last_name": "asdfasdf",
+        "middle_name": "",
+        "photo": "",
+        "notes": "asdfasdf",
+        "student_group": null,
+        "birthday": "2019-02-22",
+        "ticket": "5252"
+    },
+    "model": "students.student",
+    "pk": 15
+},
+{
+    "fields": {
+        "first_name": "Elijah",
+        "last_name": "Bashchuk",
+        "middle_name": "",
+        "photo": "",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2019-02-22",
+        "ticket": "465"
+    },
+    "model": "students.student",
+    "pk": 16
+},
+{
+    "fields": {
+        "first_name": "\u0411\u0430\u0449\u0443\u043a",
+        "last_name": "\u0412\u0430\u0441\u0438\u043b\u044c\u043e\u0432\u0438\u0447",
+        "middle_name": "\u0406\u043b\u043b\u044f",
+        "photo": "",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2019-02-22",
+        "ticket": "54654"
+    },
+    "model": "students.student",
+    "pk": 17
+},
+{
+    "fields": {
+        "first_name": "Elijah",
+        "last_name": "Bashchuk",
+        "middle_name": "",
+        "photo": "",
+        "notes": "",
+        "student_group": null,
+        "birthday": "2019-02-22",
+        "ticket": "516+54"
+    },
+    "model": "students.student",
+    "pk": 18
+}
+]
