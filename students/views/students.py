@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
+
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpResponse
 from django.shortcuts import render
-
-from ..models import Student
+from ..models.students import Student
 
 
 def students_list(request):
