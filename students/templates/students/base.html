@@ -5,64 +5,70 @@
 <!DOCTYPE html>
 <html lang="uk">
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Сервіс Обліку Студентів - {% block meta_title %}{% endblock meta_title %}</title>
-  <meta name="description" value="Система Обліку Студентів Навчального Закладу" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Сервіс Обліку Студентів - {% block meta_title %}{% endblock meta_title %}</title>
+    <meta name="description" value="Система Обліку Студентів Навчального
+      Закладу" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="{{ PORTAL_URL }}{% static "css/main.css" %}" />
-   {% block extra_css %}{% endblock extra_css %}
-</head>
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ PORTAL_URL }}{% static "css/main.css" %}" />
+    {% block extra_css %}{% endblock extra_css %}
+  </head>
 
-<body>
+  <body>
 
-  <!-- Start Container -->
-  <div class="container">
+    <!-- Start Container -->
+    <div class="container">
 
-    <!-- Start Header -->
+      <!-- Start Header -->
 
-    <div class="row" id="header">
-      <div class="col-xs-8">
+      <div class="row" id="header">
+        <div class="col-xs-8">
 
-        <h1>{% block logo %}{% endblock logo %}</h1>
+          <h1>{% block logo %}{% endblock logo %}</h1>
+        </div>
+        {% block drop_down %}
+
+        {% endblock drop_down %}
       </div>
-      {% block drop_down %}
+      <!-- End Header -->
 
-      {% endblock drop_down %}
-    </div>
-    <!-- End Header -->
-
-    <!-- Start subheader -->
-    <div class="row" id="sub-header">
-      <div class="col-xs-12">
-        <ul class="nav nav-tabs" role="tablist">
-          {% url "home" as url_home%} {% url "journal" as url_journal%} {% url "groups" as url_groups%}
-          <li role="presentation" {% if request.path == url_home %} class="active" {% endif %}><a href="{% url "home" %}">Студенти</a></li>
-          <li role="presentation" {% if request.path == url_journal %} class="active" {% endif %}><a href="/journal">Відвідування</a></li>
-          <li role="presentation" {% if request.path == url_groups %} class="active" {% endif %}><a href="{% url "groups" %}">Групи</a></li>
-        </ul>
-      </div>
-    </div>
-    <!-- End subheader -->
-
-    <!-- Start Content Columns -->
-    <div class="row" id="content-columns">
-      <div class="col-xs-12" id="content-column">
-        {% comment "Not used alert so far" %}
-        <div class="alert alert-warning" role="alert">Студент успішно доданий.</div>
-        {% endcomment %}
-        <div class="row">
-          <h2>{% block title %}{% endblock title %}</h2>
-          {% block content %}{% endblock content %}
+      <!-- Start subheader -->
+      <div class="row" id="sub-header">
+        <div class="col-xs-12">
+          <ul class="nav nav-tabs" role="tablist">
+            {% url "home" as url_home %} {% url "journal" as url_journal %} {% url "groups" as url_groups%}
+            <li role="presentation" {% if "request.path" == url_home %}
+              class="active" {% endif %}><a href="{% url "home" %}">Студенти</a></li>
+            <li role="presentation" {% if "request.path" == url_journal %}
+              class="active" {% endif %}><a href="/journal">Відвідування</a></li>
+            <li role="presentation" {% if "request.path" == url_groups %}
+              class="active" {% endif %}><a href="{% url "groups" %}">Групи</a></li>
+          </ul>
         </div>
       </div>
-    </div>
+      <!-- End subheader -->
+
+      <!-- Start Content Columns -->
+      <div class="row" id="content-columns">
+        <div class="col-xs-12" id="content-column">
+          {% comment "Not used alert so far" %}
+          <div class="alert alert-warning" role="alert">Студент успішно доданий.</div>
+          {% endcomment %}
+          <div class="row">
+            <h2>{% block title %}{% endblock title %}</h2>
+            {% block content %}{% endblock content %}
+          </div>
+        </div>
+      </div>
       <!-- End Content Columns -->
 
       <!-- Start Footer -->
       {% block footer %}
+      
       {% endblock footer %}
       <!-- End Footer -->
 
@@ -70,12 +76,12 @@
     <!-- End Container -->
 
     <!-- Javascripts Inclusion -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    
     <script src="{{ PORTAL_URL }}{% static "js/main.js" %}" defer></script>
     {% block extra_js %}{% endblock extra_js %}
 
-</body>
+  </body>
 
 </html>

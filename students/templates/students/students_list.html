@@ -1,12 +1,6 @@
 {% extends "students/base.html" %}
-
 {% load static from staticfiles %}
-
-
-
-
 {% block meta_title %}Студенти{% endblock meta_title %}
-
 {% block title %}База Студентів{% endblock title %}
 {% block logo %}Сервіс Обліку Студентів{% endblock logo %}
 {% block drop_down %}
@@ -21,7 +15,7 @@
 {% endblock drop_down %}
 {% block content %}
 {{ students.id }}
-            <a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a>
+<a href="{% url "students_add" %}" class="btn btn-primary">Додати Студента</a>
 
         <!-- Start Students Listing -->
         <table class="table">
@@ -95,9 +89,9 @@
 
 {% endblock content %}
 {% block footer %}
-<div class="row" id="footer">
-  <div class="col-xs-12">
-    &copy; 2014 Сервіс Обліку Студентів
-  </div>
-</div>
+      <div class="row" id="footer">
+        <div class="col-xs-12">
+          &copy; 2014 Сервіс Обліку Студентів
+        </div>
+      </div>
 {% endblock footer %}
