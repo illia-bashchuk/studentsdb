@@ -38,11 +38,13 @@ def students_list(request):
 
 # Views for Students
 def students_add(request):
-    return HttpResponse('<h1>Student Add Form</h1>')
+    return render(request, 'students/students_add.html',
+                  {})
 
 
 def students_edit(request, sid):
-    return HttpResponse('<h1>Edit Student %s</h1>' % sid)
+    return render(request, 'students/students_add.html',
+                  {})
 
 
 def students_delete(request, sid):
