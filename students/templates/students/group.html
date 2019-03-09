@@ -35,19 +35,18 @@
       <td>{{ forloop.counter }}</td>
 
       <td><a href="{% url "groups_edit" group.id %}">{{ group.group_name }}</td>
-              <td><a href="{% url "groups_edit" group.id %}">{{ group.leader_name }}</td>
+      <td><a href="{% url "groups_edit" group.id %}">{{ group.leader_name }}</td>
 
-              <td>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default dropdown-toggle"
-                          data-toggle="dropdown">Дія
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
-        <li><a href="/journal/{{ group.id }}">Відвідування</a></li>
-        <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
-        </ul>
+      <td>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Дія
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
+            <li><a href="/journal/{{ group.id }}">Відвідування</a></li>
+            <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
+          </ul>
         </div>
       </td>
     </tr>
@@ -62,9 +61,9 @@
 
 {% endblock content %}
 {% block footer %}
-      <div class="row" id="footer">
-        <div class="col-xs-12">
-          &copy; 2014 Сервіс Обліку Студентів
-        </div>
-      </div>
+<div class="row" id="footer">
+  <div class="col-xs-12">
+    &copy; 2014 Сервіс Обліку Студентів
+  </div>
+</div>
 {% endblock footer %}
