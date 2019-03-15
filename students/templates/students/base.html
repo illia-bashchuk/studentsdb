@@ -61,6 +61,9 @@
           {% if request.GET.status_message %}
           <div class="alert alert-warning" role="alert">{{ request.GET.status_message }}</div>
           {% endif %}
+          {% if status_message %}
+          <div class="alert alert-warning" role="alert">{{ status_message }}</div>
+          {% endif %}
           {% endblock %}
           <div class="row">
             <h2>{% block title %}{% endblock title %}</h2>

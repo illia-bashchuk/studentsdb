@@ -1,6 +1,10 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, patterns, url
 from django.contrib import admin
-from .settings import MEDIA_ROOT, DEBUG
+
+from students.views.students import StudentList
+from students.views.contact_admin import ContactView
+
+from .settings import DEBUG, MEDIA_ROOT
 
 urlpatterns = patterns('',
                        # Examples:
@@ -9,8 +13,9 @@ urlpatterns = patterns('',
 
 
                        # Students urls
-
-                       url(r'^$', 'students.views.students.students_list', name='home'),
+                       url(r'^$',
+                           StudentList.as_view(), name='home'),
+                       #url(r'^$', 'students.views.students.students_list', name='home'),
                        # url(r'^blog/', include('blog.urls')),
                        url(r'^students/add/$',
                            'students.views.students.students_add', name='students_add'),
@@ -33,7 +38,7 @@ urlpatterns = patterns('',
                            'students.views.groups.groups_delete', name='groups_delete'),
 
                        # Contact Admin Form
-                       url(r'^contact-admin/$', 'students.views.contact_admin.contact_admin',
+                       url(r'^contact-admin/$', ContactView.as_view(),
                            name='contact_admin'),
 
                        url(r'^admin/', include(admin.site.urls)),

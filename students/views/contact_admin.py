@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-
 from django import forms
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.views.generic.edit import FormView
 
 from studentsdb.settings import ADMIN_EMAIL
 
@@ -51,7 +51,27 @@ class ContactForm(forms.Form):
     )
 
 
-def contact_admin(request):
+class ContactView(FormView):
+    template_name = 'contact_admin/form.html'
+    form_class = ContactForm
+    success_url = u'/contact-admin/?status_message=%s' % (u'Ваш лист відправлено')
+    a = 'okde'
+
+    def form_valid(self, form):
+        """This method is called for valid data"""
+        subject = form.cleaned_data['subject']
+        message = form.cleaned_data['message']
+        from_email = form.cleaned_data['from_email']
+        send_mail(subject, message, from_email, [ADMIN_EMAIL])
+        return super(ContactView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactView, self).get_context_data(**kwargs)
+        #context['status_message']
+        return context
+
+
+def contact_admind(request):
     # check if form was posted
     if request.method == 'POST':
         # create a form instanse and populate it with data from the request
@@ -69,15 +89,14 @@ def contact_admin(request):
 
             except Exception:
                 message = u"""Під час відправки листа виникла непередбачувана помилка.
-                 Спробуйте скористатись даною формою пізніше. """
+                                Спробуйте скористатись даною формою пізніше. """
             else:
                 message = u'Повідомлення успішно надіслане!'
 
         # redirect to same contact page with success message
             return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('contact_admin'), message))
 
-
-# if there was not POST render blank form
+    # if there was not POST render blank form
     else:
         form = ContactForm()
 

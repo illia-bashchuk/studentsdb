@@ -6,11 +6,23 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.views.generic import ListView
+
+
 
 from ..models.groups import Group
 from ..models.students import Student
 
 
+class StudentList(ListView):
+    model = Student
+    context_object_name = 'students'
+    template_name = 'students/students_list.html'
+    paginate_by = 3
+    page_kwarg = 'p'
+
+    
+"""
 def students_list(request):
     students = Student.objects.all()
     if request.get_full_path() == "/":
@@ -36,11 +48,13 @@ def students_list(request):
         # If page is out of range (e.g. 9999), deliver
         # last page of results.
         students = paginator.page(paginator.num_pages)
-    return render(request, 'students/students_list.html',
+    return render(request, 'students/students_list.htmlstudents/students_list.html',
                   {'students': students})
-
+"""
 
 # Views for Students
+
+
 def students_add(request):
 
     # Якщо форма була запощена:
