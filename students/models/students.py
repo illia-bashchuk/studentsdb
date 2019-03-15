@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
 from django.db import models
-
 # Create your models here.
 
 
@@ -37,14 +35,14 @@ class Student(models.Model):
         max_length=256,
         blank=False,
         verbose_name=u"Білет")
-    notes = models.TextField(
-        blank=True,
-        verbose_name=u"Додаткові нотатки")
     student_group = models.ForeignKey("Group",
                                       verbose_name=u"Група",
                                       blank=False,
                                       null=True,
                                       on_delete=models.PROTECT)
+    notes = models.TextField(
+        blank=True,
+        verbose_name=u"Додаткові нотатки")
 
     def __unicode__(self):
         return u"%s %s" % (self.first_name, self.last_name)
