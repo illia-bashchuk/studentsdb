@@ -40,14 +40,17 @@
       <div class="row" id="sub-header">
         <div class="col-xs-12">
           <ul class="nav nav-tabs" role="tablist">
-            {% url "home" as url_home %} {% url "journal" as url_journal %} {% url "groups" as url_groups%}
-            <li role="presentation" {% if "request.path" == url_home %}
+            {% url "home" as url_home %} 
+            {% url "journal" as url_journal %} 
+            {% url "groups" as url_groups%}
+            {% url "contact_admin" as url_contact_admin%}
+            <li role="presentation" {% if request.path == url_home %}
               class="active" {% endif %}><a href="{% url "home" %}">Студенти</a></li>
-            <li role="presentation" {% if "request.path" == url_journal %}
-              class="active" {% endif %}><a href="/journal">Відвідування</a></li>
-            <li role="presentation" {% if "request.path" == url_groups %}
+            <li role="presentation" {% if request.path == url_journal %}
+              class="active" {% endif %}><a href="{% url "journal" %}">Відвідування</a></li>
+            <li role="presentation" {% if request.path == url_groups %}
               class="active" {% endif %}><a href="{% url "groups" %}">Групи</a></li>
-            <li role="presentation" {% if "/contact-admin" in request.path %}
+            <li role="presentation" {% if request.path == url_contact_admin %}
               class="active" {% endif %}><a href="{% url "contact_admin" %}">Контакт</a></li>
           </ul>
         </div>
