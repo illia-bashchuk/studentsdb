@@ -13,6 +13,8 @@ import os
 
 from django.conf import global_settings
 
+from db import DATABASES
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -61,7 +63,7 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-from db import DATABASES
+DATABASES
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -84,10 +86,12 @@ STATIC_URL = '/static/'
 
 # Context processor
 
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    "django.core.context_processors.request",
-    "studentsdb.context_processors.students_processors",
-)
+TEMPLATE_CONTEXT_PROCESSORS = \
+    global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+        "django.core.context_processors.request",
+        "studentsdb.context_processors.students_processors",
+        "students.context_processors.groups_processor",
+    )
 
 # PORTAL_URL = 'http://127.0.0.1:8000'
 
