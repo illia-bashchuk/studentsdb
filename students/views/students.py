@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 from datetime import datetime
 
 from crispy_forms.bootstrap import FormActions
@@ -10,21 +11,34 @@ from django.core.urlresolvers import reverse
 from django.forms import ModelForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import DeleteView, ListView, UpdateView
 
 from ..models.groups import Group
 from ..models.students import Student
+from ..util import get_current_group, paginate
+
 
 
 class StudentList(ListView):
     model = Student
     context_object_name = 'students'
     template_name = 'students/students_list.html'
-    paginate_by = 3
+    paginate_by = 10
     page_kwarg = 'page'
+
+    def get_queryset(self):
+        current_group = get_current_group(self.request)
+        qs = super(StudentList, self).get_queryset()
+        if current_group:
+            return qs.filter(student_group=current_group)
+        else:
+            # otherwise show all students
+            return qs.all()
 
 
 """
+
+
 def students_list(request):
     students = Student.objects.all()
     if request.get_full_path() == "/":
@@ -52,6 +66,8 @@ def students_list(request):
         students = paginator.page(paginator.num_pages)
     return render(request, 'students/students_list.htmlstudents/students_list.html',
                   {'students': students})
+
+
 """
 
 # Views for Students
@@ -158,7 +174,7 @@ def students_add(request):
                 u'%s?status_message=Додавання студента скасовано!'
                 % reverse('home'))
         else:
-                    # initial form render
+            # initial form render
             return render(request, 'students/students_add.html',
                           {'groups': Group.objects.all().order_by('title')})
 
