@@ -26,7 +26,7 @@ urlpatterns = patterns('',
                        url(r'^students/(?P<pk>\d+)/delete/$',
                            StudentDeleteView.as_view(), name='students_delete'),
                        # journal urls
-                       url(r'^journal/$',
+                       url(r'^journal/(?P<pk>\d+)?/?$',
                            JournalView.as_view(), name='journal'),
 
                        # Group urls
