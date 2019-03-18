@@ -17,7 +17,7 @@ urlpatterns = patterns('',
                        # Students urls
                        url(r'^$',
                            StudentList.as_view(), name='home'),
-                       #url(r'^$', 'students.views.students.students_list', name='home'),
+                       # url(r'^$', 'students.views.students.students_list', name='home'),
                        # url(r'^blog/', include('blog.urls')),
                        url(r'^students/add/$',
                            'students.views.students.students_add', name='students_add'),
