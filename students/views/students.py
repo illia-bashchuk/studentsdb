@@ -21,7 +21,7 @@ class StudentList(ListView):
     context_object_name = 'students'
     template_name = 'students/students_list.html'
     paginate_by = 3
-    page_kwarg = 'p'
+    page_kwarg = 'page'
 
 
 """
