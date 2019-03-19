@@ -6,7 +6,7 @@
       <a href="?page=1{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">&laquo;</a>
     </li>
     {% for p in paginator.page_range %}
-    <li {% if object_list.number == p %}class="active"{% endif %}>
+    <li {% if page_obj.number == p %}class="active"{% endif %}>
       <a href="?page={{ p }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">{{ p }}</a>
     </li>
     {% endfor %}
