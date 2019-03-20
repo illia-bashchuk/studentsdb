@@ -16,7 +16,7 @@
 
       <th><a href="#">Назва &uarr;</a></th>
       <th><a href="#">Староста</a></th>
-
+      <th><a href="#">Нотатки</a></th>
       <th>Дії</th>
     </tr>
   </thead>
@@ -25,9 +25,9 @@
     <tr>
       <td>{{ forloop.counter }}</td>
 
-      <td><a href="{% url "groups_edit" group.id %}">{{ group.group_name }}</td>
-      <td><a href="{% url "groups_edit" group.id %}">{{ group.leader_name }}</td>
-
+      <td><a href="{% url "groups_edit" group.id %}">{{ group.title }}</td>
+      <td><a href="{% url "groups_edit" group.id %}">{{ group.leader }}</td>
+      <td><a href="{% url "groups_edit" group.id %}">{{ group.notes }}</td>
       <td>
         <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Дія

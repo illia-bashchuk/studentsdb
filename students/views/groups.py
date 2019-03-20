@@ -20,7 +20,7 @@ from ..util import get_current_group, paginate
 
 class GroupList(ListView):
     model = Group
-    context_object_name = 'groups1'
+    context_object_name = 'groups'
     template_name = 'students/group.html'
     paginate_by = 3
     page_kwarg = 'page'
