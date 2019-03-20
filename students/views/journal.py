@@ -53,7 +53,7 @@ class JournalView(TemplateView):
         # filter by group
         current_group = get_current_group(self.request)
         if current_group:
-            queryset = Student.objects.filter(student_group=current_group
+            queryset = Student.objects.filter(student_group=current_group.id
                                               ).order_by('last_name')
         elif kwargs.get('pk'):
             queryset = [Student.objects.get(pk=kwargs['pk'])]
