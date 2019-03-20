@@ -40,17 +40,24 @@ function initGroupSelector() {
     $('#group-selector select').change(function (event) {
         // get value of currently selected group option
         var group = $(this).val();
-
+        var uri = window.location.toString();
         if (group) {
             // set cookie with expiration date 1 year since now;
             // cookie creation function takes period in days
             $.cookie('current_group', group, { 'path': '/', 'expires': 365 });
+            // remove query string from URL using JQuery
+            if (uri.indexOf("?") > 0) {
+                var clean_uri = uri.substring(0, uri.indexOf("?"));
+                window.history.replaceState({}, document.title, clean_uri);
+            }
         } else {
             // otherwise we delete the cookie
             $.removeCookie('current_group', { 'path': '/' });
         }
 
         // and reload a page
+        
+        
         location.reload(true);
 
         return true;
