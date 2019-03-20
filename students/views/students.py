@@ -30,7 +30,7 @@ class StudentList(ListView):
         current_group = get_current_group(self.request)
         qs = super(StudentList, self).get_queryset()
         if current_group:
-            return qs.filter(student_group=current_group)
+            return qs.filter(student_group=current_group.id)
         else:
             # otherwise show all students
             return qs.all()
