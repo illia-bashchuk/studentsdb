@@ -3,6 +3,7 @@ from django.contrib import admin
 
 from students.views.contact_admin import ContactView
 from students.views.journal import JournalView
+from students.views.groups import GroupList
 from students.views.students import (StudentDeleteView, StudentList,
                                      StudentUpdateView)
 
@@ -31,7 +32,7 @@ urlpatterns = patterns('',
 
                        # Group urls
                        url(r'^groups/$',
-                           'students.views.groups.groups_list', name='groups'),
+                           GroupList.as_view(), name='groups'),
                        url(r'^groups/add/$',
                            'students.views.groups.groups_add', name='groups_add'),
                        url(r'^groups/(?P<gid>\d+)/edit/$',
