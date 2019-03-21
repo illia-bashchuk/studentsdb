@@ -5,7 +5,7 @@ from datetime import datetime
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Layout, Div, Fieldset, Button, Field, HTML
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
@@ -16,7 +16,6 @@ from django.views.generic import DeleteView, ListView, UpdateView
 from ..models.groups import Group
 from ..models.students import Student
 from ..util import get_current_group, paginate
-
 
 
 class StudentList(ListView):
@@ -203,13 +202,17 @@ class StudentUpdateForm(ModelForm):
         self.helper.help_text_inline = True
         self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 control-label'
-        self.helper.field_class = 'col-sm-3'
-
+        self.helper.field_class = 'col-sm-8'
         # add buttons
-        self.helper.layout[-1] = FormActions(
-            Submit('add_button', u'Зберегти', css_class="btn btn-primary"),
-            Submit('cancel_button', u'Скасувати', css_class="btn btn-link"),
-        )
+        self.helper.layout.append(Field(
+            HTML('<div class="form-group">'
+                 '<label class="col-sm-2 control-label" ></label >'
+                 '<div class="controls col-sm-8 text-center">'),
+            Submit('add_button', u"Зберегти",
+                   css_class="btn btn-primary"),
+            Submit('cancel_button', u"Скасувати",
+                   css_class="btn btn-link"),
+            HTML('</div></div>')))
 
 
 class StudentUpdateView(UpdateView):
