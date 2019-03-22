@@ -106,3 +106,6 @@ node_modules
 
 #database settings
 db.py
+
+# app logs
+studentsdb.log
