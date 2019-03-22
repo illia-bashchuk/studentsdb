@@ -35,7 +35,7 @@
           </button>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
-            <li><a href="/journal/{{ group.id }}">Відвідування</a></li>
+            <li><a href="{% url "journal" %}?group={{group.id}}">Відвідування</a></li>
             <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
           </ul>
         </div>
