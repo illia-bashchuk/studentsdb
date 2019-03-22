@@ -52,10 +52,15 @@ class JournalView(TemplateView):
         # display journal for one student; also check if we need to
         # filter by group
         current_group = get_current_group(self.request)
+        selected_group = self.request.GET.get('group')
+        
         if current_group:
             queryset = Student.objects.filter(student_group=current_group.id
                                               ).order_by('last_name')
-        elif kwargs.get('pk'):
+        elif selected_group:
+            queryset = Student.objects.filter(student_group=selected_group
+                                              ).order_by('last_name')
+        elif kwargs.get('pk'):           
             queryset = [Student.objects.get(pk=kwargs['pk'])]
         else:
             queryset = Student.objects.all().order_by('last_name')
