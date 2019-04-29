@@ -3,14 +3,14 @@ from datetime import datetime
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import HTML, Field, Submit
+from crispy_forms.layout import HTML, Field, Submit, Button
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.core.urlresolvers import reverse
 from django.db.models import ProtectedError
 from django.forms import ModelForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.views.generic import DeleteView, ListView, UpdateView
+from django.views.generic import DeleteView, ListView, UpdateView, CreateView
 
 from ..models.groups import Group
 from ..util import get_current_group, paginate
@@ -37,8 +37,52 @@ class GroupList(ListView):
             return qs.all()
 
 
-def groups_add(request):
-    return None
+class GroupCreateForm(ModelForm):
+    class Meta:
+        model = Group
+
+    def __init__(self, *args, **kwargs):
+        super(GroupCreateForm, self).__init__(*args, **kwargs)
+
+        self.helper = FormHelper(self)
+
+        # set form tag attributes
+        self.helper.form_action = reverse('groups_add')
+        self.helper.form_method = 'POST'
+        self.helper.form_class = 'form-horizontal text-center'
+
+        # set form field properties
+        self.helper.help_text_inline = True
+        self.helper.html5_required = True
+        self.helper.label_class = 'col-sm-2 control-label'
+        self.helper.field_class = 'col-sm-3'
+
+        # add buttons
+        # add buttons
+        self.helper.layout.append(Field(
+            HTML('<div class="form-group submit">'
+                 '<label class="col-sm-2 control-label" ></label>'
+                 '<div class="controls col-sm-3 text-center">'),
+            Submit('add_button', u"Зберегти",
+                   css_class="btn btn-primary"),
+            HTML(u'<button type="submit" class="btn btn-link" name="cancel_button">Скасувати</button></div></div>')))
+
+
+class GroupCreateView(CreateView):
+    model = Group
+    template_name = 'students/group_add.html'
+    form_class = GroupCreateForm
+
+    def get_success_url(self):
+        return u'%s?status_message=Групу успішно додано!' % reverse('groups')
+
+    def post(self, request, *args, **kwargs):
+        if self.request.POST.get('cancel_button'):
+            return HttpResponseRedirect(
+                u'%s?status_message=Редагування відмінено!' % reverse('groups')
+            )
+        else:
+            return super(GroupCreateView, self).post(request, *args, **kwargs)
 
 
 class GroupUpdateForm(ModelForm):
