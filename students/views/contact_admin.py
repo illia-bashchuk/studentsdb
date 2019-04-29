@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import logging
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
@@ -54,8 +56,8 @@ class ContactForm(forms.Form):
 class ContactView(FormView):
     template_name = 'contact_admin/form.html'
     form_class = ContactForm
-    success_url = u'/contact-admin/?status_message=%s' % (u'Ваш лист відправлено')
-    a = 'okde'
+    success_url = u'/contact-admin/?status_message=%s' % (
+        u'Ваш лист відправлено')
 
     def form_valid(self, form):
         """This method is called for valid data"""
@@ -67,11 +69,11 @@ class ContactView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(ContactView, self).get_context_data(**kwargs)
-        #context['status_message']
+        # context['status_message']
         return context
 
 
-def contact_admind(request):
+def contact_admin(request):
     # check if form was posted
     if request.method == 'POST':
         # create a form instanse and populate it with data from the request
@@ -86,10 +88,11 @@ def contact_admind(request):
 
             try:
                 send_mail(subject, message, from_email, [ADMIN_EMAIL])
-
             except Exception:
                 message = u"""Під час відправки листа виникла непередбачувана помилка.
                                 Спробуйте скористатись даною формою пізніше. """
+                logger = logging.getLogger(__name__)
+                logger.exception(message)
             else:
                 message = u'Повідомлення успішно надіслане!'
 
