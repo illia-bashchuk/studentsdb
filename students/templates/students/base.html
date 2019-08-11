@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static from staticfiles %}
 
 
@@ -7,8 +8,8 @@
 
   <head>
     <meta charset="UTF-8" />
-    <title>Сервіс Обліку Студентів - {% block meta_title %}{% endblock meta_title %}</title>
-    <meta name="description" value="Система Обліку Студентів Навчального Закладу" />
+    <title>{% trans "Students Accounting Service" %} - {% block meta_title %}{% endblock meta_title %}</title>
+    <meta name="description" value="{% trans "App to manage students database"%}" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css" />
@@ -31,9 +32,9 @@
         </div>
         
            <div class="col-xs-4" id="group-selector">
-        <strong>Група:</strong>
+        <strong>{% trans "Group:" %}</strong>
         <select>
-          <option value="">Усі Групи</option>
+          <option value="">{% trans "All Students" %}</option>
           {% for group in GROUPS %}
           <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
           {% endfor %}
@@ -51,13 +52,13 @@
             {% url "groups" as url_groups%}
             {% url "contact_admin" as url_contact_admin%}
             <li role="presentation" {% if request.path == url_home %}
-              class="active" {% endif %}><a href="{% url "home" %}">Студенти</a></li>
+              class="active" {% endif %}><a href="{% url "home" %}">{% trans "Students" %}</a></li>
             <li role="presentation" {% if request.path == url_journal %}
-              class="active" {% endif %}><a href="{% url "journal" %}">Відвідування</a></li>
+              class="active" {% endif %}><a href="{% url "journal" %}">{% trans "Journal" %}</a></li>
             <li role="presentation" {% if request.path == url_groups %}
-              class="active" {% endif %}><a href="{% url "groups" %}">Групи</a></li>
+              class="active" {% endif %}><a href="{% url "groups" %}">{% trans "Groups" %}</a></li>
             <li role="presentation" {% if request.path == url_contact_admin %}
-              class="active" {% endif %}><a href="{% url "contact_admin" %}">Контакт</a></li>
+              class="active" {% endif %}><a href="{% url "contact_admin" %}">{% trans "Contact" %}</a></li>
           </ul>
         </div>
       </div>
