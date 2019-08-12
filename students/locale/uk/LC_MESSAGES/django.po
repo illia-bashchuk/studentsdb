@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-12 19:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: templates/students/base.html:11
+#: templates/students/group_confirm_delete.html:8
+#: templates/students/group_confirm_delete.html:26
+#: templates/students/students_list.html:6
+#: templates/students/students_list.html:86
+msgid "Students Accounting Service"
+msgstr "Сервіс Обліку Студентів"
+
+#: templates/students/base.html:12
+msgid "App to manage students database"
+msgstr "Додаток для обліку данних студентів"
+
+#: templates/students/base.html:35
+msgid "Group:"
+msgstr "Група:"
+
+#: templates/students/base.html:37
+msgid "All Students"
+msgstr "Усі Студенти"
+
+#: templates/students/base.html:55 templates/students/students_list.html:4
+msgid "Students"
+msgstr "Студенти"
+
+#: templates/students/base.html:57 templates/students/students_list.html:69
+msgid "Journal"
+msgstr "Відвідування"
+
+#: templates/students/base.html:59
+msgid "Groups"
+msgstr "Групи"
+
+#: templates/students/base.html:61
+msgid "Contact"
+msgstr "Контакт"
+
+#: templates/students/group_confirm_delete.html:5
+#: templates/students/group_confirm_delete.html:7
+#, fuzzy
+
+msgid "Delete Group"
+msgstr "Видалити групу"
+
+#: templates/students/group_confirm_delete.html:13
+#, python-format
+msgid "Do you really want to delete group:\"%(object)s\"?"
+msgstr "Ви дійсно бажаєте видалити групу:\"%(object)s\"?"
+
+#: templates/students/group_confirm_delete.html:14
+msgid "Yes"
+msgstr "Так"
+
+#: templates/students/group_confirm_delete.html:16
+msgid "No"
+msgstr "Ні"
+
+#: templates/students/students_list.html:5
+msgid "Students List"
+msgstr "Список Студентів"
+
+#: templates/students/students_list.html:10
+msgid "Add Student"
+msgstr "Додати Студента"
+
+#: templates/students/students_list.html:24
+msgid "Photo"
+msgstr "Фото"
+
+#: templates/students/students_list.html:26
+msgid "Last Name"
+msgstr "Прізвище"
+
+#: templates/students/students_list.html:31
+msgid "First Name"
+msgstr "Ім'я"
+
+#: templates/students/students_list.html:35
+msgid "Ticket #"
+msgstr "№ білету"
+
+#: templates/students/students_list.html:38
+msgid "Actions"
+msgstr "Дії"
+
+#: templates/students/students_list.html:64
+msgid "Action"
+msgstr "Дія"
+
+#: templates/students/students_list.html:68
+msgid "Edit"
+msgstr "Редагувати"
+
+#: templates/students/students_list.html:70
+msgid "Delete"
+msgstr "Видалити"
