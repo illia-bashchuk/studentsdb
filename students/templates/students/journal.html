@@ -1,8 +1,9 @@
 {% extends "students/base.html" %}
+{% load i18n %}
 {% load static from staticfiles %}
-{% block meta_title %}Студенти{% endblock meta_title %}
-{% block title %}Облік Відвідування{% endblock title %}
-{% block logo %}Сервіс Обліку Студентів{% endblock logo %}
+{% block meta_title %}{% trans "Students" %}{% endblock meta_title %}
+{% block title %}{% trans "Account of Visits" %}{% endblock title %}
+{% block logo %}{% trans "Students Accounting Service" %}{% endblock logo %}
 
 
 
@@ -11,16 +12,15 @@
 {% if not students %}
 
 <div class="alert alert-warning">
-    Поки немає жодного студента в базі. Будь-ласка,
-    <a href="{% url "students_add" %}">додайте</a> першого.
+    {% trans "There are no students in the database yet. Please " %}
+    <a href="{% url "students_add" %}">{% trans "add" %}</a> {% trans "the first one." %}
 </div>
 
 {% else %}
 
 <div class="alert alert-warning">
-    Зміни в журнал зберігаються автоматично при кожному кліку в клітинці
-    таблиці.
-    <span id="ajax-progress-indicator">Йде збереження...</span>
+    {% trans "Changes to the log are automatically saved every time a table cell is clicked." %}
+    <span id="ajax-progress-indicator">{% trans "Saving..." %}</span>
 </div>
 
 <p id="journal-nav" class="text-center">
@@ -38,7 +38,7 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Студент</th>
+      <th>{% trans "Student" %}</th>
       {% for day in month_header %}
       <th class="day-header">
         <!-- TODO: translate day name -->
@@ -96,7 +96,7 @@
 {% block footer %}
     <div class="row" id="footer">
       <div class="col-xs-12">
-        &copy; 2014 Сервіс Обліку Студентів
+        &copy; 2014 {% trans "Students Accounting Service" %}
       </div>
     </div>
 {% endblock footer %}
