@@ -10,6 +10,10 @@ from students.views.students import (StudentDeleteView, StudentList,
 
 from .settings import DEBUG, MEDIA_ROOT
 
+js_info_dict = {
+    'packages': ('students',),
+}
+
 urlpatterns = patterns('',
                        # Examples:
                        # url(r'^$', 'studentsdb.views.home', name='home'),
@@ -46,6 +50,9 @@ urlpatterns = patterns('',
                            name='contact_admin'),
 
                        url(r'^admin/', include(admin.site.urls)),
+
+                       #JavaScript i18n
+                       url(r'^jsi18n\.js$', 'django.views.i18n.javascript_catalog', js_info_dict)
                        )
 
 

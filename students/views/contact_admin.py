@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+from django.utils.translation import ugettext as _
 import logging
 
 from crispy_forms.helper import FormHelper
@@ -34,19 +34,19 @@ class ContactForm(forms.Form):
         self.helper.field_class = 'col-sm-3'
 
         # form buttons
-        self.helper.add_input(Submit('send_button', u'Надіслати'))
+        self.helper.add_input(Submit('send_button', _(u'Send')))
 
     from_email = forms.EmailField(
-        label=u"Ваша Емейл Адреса"
+        label=_(u"Your Email Address")
     )
 
     subject = forms.CharField(
-        label=u"Заголовок листа",
+        label=_(u"The title of the letter"),
         max_length=128
     )
 
     message = forms.CharField(
-        label=u"Текст повідомлення",
+        label=_(u"Message text"),
         max_length=2560,
         widget=forms.Textarea
 
@@ -57,7 +57,7 @@ class ContactView(FormView):
     template_name = 'contact_admin/form.html'
     form_class = ContactForm
     success_url = u'/contact-admin/?status_message=%s' % (
-        u'Ваш лист відправлено')
+        _(u'Your letter has been sent'))
 
     def form_valid(self, form):
         """This method is called for valid data"""
@@ -89,12 +89,12 @@ def contact_admin(request):
             try:
                 send_mail(subject, message, from_email, [ADMIN_EMAIL])
             except Exception:
-                message = u"""Під час відправки листа виникла непередбачувана помилка.
-                                Спробуйте скористатись даною формою пізніше. """
+                message = _(u"""An unexpected error occurred while sending the email. 
+                                Please try this form later.""")
                 logger = logging.getLogger(__name__)
                 logger.exception(message)
             else:
-                message = u'Повідомлення успішно надіслане!'
+                message = _(u'Message successfully sent!')
 
         # redirect to same contact page with success message
             return HttpResponseRedirect(u'%s?status_message=%s' % (reverse('contact_admin'), message))

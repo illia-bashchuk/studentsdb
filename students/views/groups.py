@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+from django.utils.translation import ugettext as _  
 from datetime import datetime
 
 from crispy_forms.bootstrap import FormActions
@@ -63,9 +63,9 @@ class GroupCreateForm(ModelForm):
             HTML('<div class="form-group submit">'
                  '<label class="col-sm-2 control-label" ></label>'
                  '<div class="controls col-sm-3 text-center">'),
-            Submit('add_button', u"Зберегти",
+            Submit('add_button', _(u"Save"),
                    css_class="btn btn-primary"),
-            HTML(u'<button type="submit" class="btn btn-link" name="cancel_button">Скасувати</button></div></div>')))
+            HTML(_(u'<button type="submit" class="btn btn-link" name="cancel_button">Cancel</button></div></div>'))))
 
 
 class GroupCreateView(CreateView):
@@ -74,12 +74,12 @@ class GroupCreateView(CreateView):
     form_class = GroupCreateForm
 
     def get_success_url(self):
-        return u'%s?status_message=Групу успішно додано!' % reverse('groups')
+        return _(u'%s?status_message=Group successfully added!') % reverse('groups')
 
     def post(self, request, *args, **kwargs):
         if self.request.POST.get('cancel_button'):
             return HttpResponseRedirect(
-                u'%s?status_message=Редагування відмінено!' % reverse('groups')
+                _(u'%s?status_message=Editing canceled!') % reverse('groups')
             )
         else:
             return super(GroupCreateView, self).post(request, *args, **kwargs)
@@ -112,9 +112,9 @@ class GroupUpdateForm(ModelForm):
             HTML('<div class="form-group">'
                  '<label class="col-sm-2 control-label" ></label >'
                  '<div class="controls col-sm-3 text-center">'),
-            Submit('add_button', u"Зберегти",
+            Submit('add_button', _(u"Save"),
                    css_class="btn btn-primary"),
-            Submit('cancel_button', u"Скасувати",
+            Submit('cancel_button', _(u"Cancel"),
                    css_class="btn btn-link"),
             HTML('</div></div>')))
 
@@ -125,12 +125,12 @@ class GroupUpdateView(UpdateView):
     form_class = GroupUpdateForm
 
     def get_success_url(self):
-        return u'%s?status_message=Групу успішно відредаговано!' % reverse('groups')
+        return _(u'%s?status_message=The group has been successfully edited!') % reverse('groups')
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('cancel_button'):
             return HttpResponseRedirect(
-                u'%s?status_message=Редагування відмінено!' % reverse('groups')
+                _(u'%s?status_message=Editing canceled!') % reverse('groups')
             )
         else:
             return super(GroupUpdateView, self).post(request, *args, **kwargs)
@@ -141,7 +141,7 @@ class GroupDeleteView(DeleteView):
     template_name = 'students/group_confirm_delete.html'
 
     def get_success_url(self):
-        return u'%s?status_message=Групу успішно видалено!' \
+        return _(u'%s?status_message=Group successfully deleted!') \
             % reverse('groups')
 
     def delete(self, request, *args, **kwargs):
@@ -151,8 +151,8 @@ class GroupDeleteView(DeleteView):
         """
         self.object = self.get_object()
         success_url = self.get_success_url()
-        error_text = u'''Групу не можливо видалити так як за нею закріплені студенти. 
-        Видаліть або переведіть студентів до іншої групи!'''
+        error_text = _(u'''The group cannot be deleted because students are assigned to it.
+                            Remove or transfer students to another group!''')
         try:
             # Get the single item from the filtered queryset
             self.object.delete()

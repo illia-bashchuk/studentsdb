@@ -82,7 +82,7 @@ function initEditStudentPage() {
             'success': function (data, status, xhr) {
                 // check if we got successfull response from the server
                 if (status != 'success') {
-                    alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+                    alert(gettext('There was an error on the server.Please, try again a bit later.'));
                     return false;
                 }
 
@@ -90,12 +90,12 @@ function initEditStudentPage() {
                 var modal = $('#myModal'),
                     html = $(data), form = html.find('#content-column form');
                 modal.find('.modal-title').html(html.find('#content-column h2').text());
-                modal.find('.modal-body').html(form);
+                modal.find('.modal-body').html(form); 'Помилка на сервері. Спробуйте будь-ласка пізніше.'
                 //modal.modal('show');
                 // init our edit form
                 initEditStudentForm(form, modal);
 
-                // setup and show modal window finally
+                // setup and show modal window finally'Помилка на сервері. Спробуйте будь-ласка пізніше.'
                 modal.modal({
                     'keyboard': false,
                     'backdrop': false,
@@ -103,7 +103,7 @@ function initEditStudentPage() {
                 });
             },
             'error': function () {
-                alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+                alert(gettext('There was an error on the server.Please, try again a bit later.'));
                 return false
             }
         });
@@ -126,7 +126,7 @@ function initEditStudentForm(form, modal) {
     form.ajaxForm({
         'dataType': 'html',
         'error': function () {
-            alert('Помилка на сервері. Спробуйте будь-ласка пізніше.');
+            alert(gettext('There was an error on the server.Please, try again a bit later.'));
             return false;
         },
         'success': function (data, status, xhr) {

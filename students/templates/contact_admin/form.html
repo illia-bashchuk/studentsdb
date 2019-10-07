@@ -1,23 +1,15 @@
 {% extends "students/base.html" %}
+{% load i18n %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
-{% block meta_title %}Зв’язок із Адміністратором{% endblock meta_title %}
-{% block title %}Зв’язок із Адміністратором{% endblock title %}
-{% block logo %}Сервіс Обліку Студентів{% endblock logo %}
-{% block drop_down %}
-<div class="col-xs-4" id="group-selector">
-    <strong>Група:</strong>
-    <select>
-    <option value="">Усі Студенти</option>
-    <option value="">Мтм-21, Віталій Подоба</option>
-    <option value="">Мтм-22, Андрій Петров</option>
-  </select>
-</div>
-{% endblock drop_down %}
+{% block meta_title %}{% trans "Contact the Administrator" %}{% endblock meta_title %}
+{% block title %}{% trans "Contact the Administrator" %}{% endblock title %}
+{% block logo %}{% trans "Students Accounting Service" %}{% endblock logo %}
+
 {% block status_message %}
 {% if form.errors %}
 <div class="alert alert-warning" role="alert">
-Будь-ласка, виправте наступні помилки
+{% trans "Please correct the following errors" %}
 </div>
 {% endif %}
 {{ block.super }}
