@@ -35,13 +35,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
+    'studentsdb',
     'crispy_forms',
     'students',
 )
@@ -95,6 +96,11 @@ TEMPLATE_CONTEXT_PROCESSORS = \
         "students.context_processors.groups_processor",
     )
 
+# add project templates directory as Django does not
+# pick it default
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'studentsdb', 'templates'),
+)
 # PORTAL_URL = 'http://127.0.0.1:8000'
 
 MEDIA_URL = '/media/'
@@ -111,6 +117,11 @@ EMAIL_USE_SSL = False
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 REGISTRATION_OPEN = True
+
+LOGIN_REDIRECT_URL = 'home'
+
+LOGIN_URL = 'auth_login'
+LOGOUT_URL = 'auth_logout'
 
 LOG_FILE = os.path.join(BASE_DIR, 'studentsdb.log')
 

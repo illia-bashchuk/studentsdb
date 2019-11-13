@@ -27,19 +27,36 @@
 
       <div class="row" id="header">
         <div class="col-xs-8">
-
-          <h1>{% block logo %}{% endblock logo %}</h1>
+          <h1>{% trans "Students Accounting Service" %}</h1>
         </div>
-        
-           <div class="col-xs-4" id="group-selector">
-        <strong>{% trans "Group:" %}</strong>
-        <select>
-          <option value="">{% trans "All Students" %}</option>
-          {% for group in GROUPS %}
-          <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
-          {% endfor %}
-        </select>
-        
+
+        {% if user.is_authenticated %}
+
+            <div class="col-xs-4" id="group-selector">
+              <strong>{% trans "Group:" %}</strong>
+              <select>
+                <option value="">{% trans "All Students" %}</option>
+                {% for group in GROUPS %}
+                  <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <!-- User’s toolbar for authenticated users -->
+            <div class="col-xs-2" id="user-toolbar">
+              <span>{{ user.username }}</span> | 
+              <a href="{% url "auth_logout" %}">{% trans "Logout" %}</a>
+            </div>
+
+        {% else %}
+            <div class="col-xs-4" id="group-selector">
+              <!-- User’s toolbar for anonymous users -->
+              <div class="col-xs-6" id="user-toolbar">
+                <a href="{% url "auth_login" %}">{% trans "Login" %}</a> |
+                <a href="{% url "registration_register" %}">{% trans "Register" %}</a>
+              </div>
+            </div>
+        {% endif %}
       </div>
       <!-- End Header -->
 

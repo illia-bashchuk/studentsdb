@@ -1,5 +1,7 @@
 from django.utils.translation import ugettext as _
 from datetime import datetime
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
@@ -33,21 +35,19 @@ class StudentList(ListView):
             return qs.all()
 
 
-
 # Views for Students
 
-
+@login_required
 def students_add(request):
 
     # If the form was completed:
     if request.method == "POST":
-        
+
         # If the Add button was clicked:
         if request.POST.get('add_button') is not None:
             # We validate the data and collect errors
             errors = {}
 
-            
             data = {
                 'middle_name': request.POST.get('middle_name'),
                 'notes': request.POST.get('notes')
@@ -72,7 +72,8 @@ def students_add(request):
                 try:
                     datetime.strptime(birthday, '%Y-%m-%d')
                 except Exception:
-                    errors['birthday'] = _(u"""Enter the correct date format (e.g. 1984-12-30)""")
+                    errors['birthday'] = _(
+                        u"""Enter the correct date format (e.g. 1984-12-30)""")
                 else:
                     data['birthday'] = birthday
 
@@ -178,6 +179,10 @@ class StudentUpdateView(UpdateView):
         else:
             return super(StudentUpdateView, self).post(request, *args, **kwargs)
 
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StudentUpdateView, self).dispatch(*args, **kwargs)
+
 
 class StudentDeleteView(DeleteView):
     model = Student
@@ -186,3 +191,7 @@ class StudentDeleteView(DeleteView):
     def get_success_url(self):
         return _(u'%s?status_message=Student successfully deleted!') \
             % reverse('home')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StudentDeleteView, self).dispatch(*args, **kwargs)

@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext as _
 import logging
+from django.contrib.auth.decorators import permission_required
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -73,6 +74,7 @@ class ContactView(FormView):
         return context
 
 
+@permission_required('auth.add_user')
 def contact_admin(request):
     # check if form was posted
     if request.method == 'POST':
