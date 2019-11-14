@@ -70,12 +70,17 @@
             {% url "contact_admin" as url_contact_admin%}
             <li role="presentation" {% if request.path == url_home %}
               class="active" {% endif %}><a href="{% url "home" %}">{% trans "Students" %}</a></li>
+            {% if user.is_authenticated %}  
             <li role="presentation" {% if request.path == url_journal %}
               class="active" {% endif %}><a href="{% url "journal" %}">{% trans "Journal" %}</a></li>
             <li role="presentation" {% if request.path == url_groups %}
               class="active" {% endif %}><a href="{% url "groups" %}">{% trans "Groups" %}</a></li>
+            {% endif %}
+
+            {% if perms.auth.add_user %}
             <li role="presentation" {% if request.path == url_contact_admin %}
               class="active" {% endif %}><a href="{% url "contact_admin" %}">{% trans "Contact" %}</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>

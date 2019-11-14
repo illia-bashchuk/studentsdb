@@ -1,6 +1,7 @@
 Django==1.7.2
 Pillow
 mysqlclient
+#pip install --only-binary :all: mysqlclient [for Windows]
 MySQL-python
 django-crispy-forms==1.4.0
 python-dateutil
