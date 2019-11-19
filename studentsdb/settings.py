@@ -13,6 +13,8 @@ import os
 
 from django.conf import global_settings
 
+from db import DATABASES
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -33,18 +35,21 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'studentsdb',
     'crispy_forms',
     'students',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -61,7 +66,7 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-from db import DATABASES
+DATABASES
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -84,11 +89,18 @@ STATIC_URL = '/static/'
 
 # Context processor
 
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    "django.core.context_processors.request",
-    "studentsdb.context_processors.students_processors",
-)
+TEMPLATE_CONTEXT_PROCESSORS = \
+    global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+        "django.core.context_processors.request",
+        "studentsdb.context_processors.students_processors",
+        "students.context_processors.groups_processor",
+    )
 
+# add project templates directory as Django does not
+# pick it default
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'studentsdb', 'templates'),
+)
 # PORTAL_URL = 'http://127.0.0.1:8000'
 
 MEDIA_URL = '/media/'
@@ -103,3 +115,57 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+REGISTRATION_OPEN = True
+
+LOGIN_REDIRECT_URL = 'home'
+
+LOGIN_URL = 'auth_login'
+LOGOUT_URL = 'auth_logout'
+
+LOG_FILE = os.path.join(BASE_DIR, 'studentsdb.log')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s: %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': LOG_FILE,
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['null'],
+            'propagate': True,
+            'level': 'INFO',
+        },
+        'students.signals': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+        'students.views.contact_admin': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        }
+    }
+}

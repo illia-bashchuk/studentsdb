@@ -1,21 +1,13 @@
 {% extends "students/base.html" %}
+{% load i18n %}
 {% load static from staticfiles %}
-{% block meta_title %}Студенти{% endblock meta_title %}
-{% block title %}Групи{% endblock title %}
-{% block logo %}Сервіс Обліку Студентів{% endblock logo %}
-{% block drop_down %}
-<div class="col-xs-4" id="group-selector">
-  <strong>Група:</strong>
-  <select>
-    <option value="">Усі Студенти</option>
-    <option value="">Мтм-21, Віталій Подоба</option>
-    <option value="">Мтм-22, Андрій Петров</option>
-  </select>
-</div>
-{% endblock drop_down %}
+{% block meta_title %}{% trans "Students" %}{% endblock meta_title %}
+{% block title %}{% trans "Group List" %}{% endblock title %}
+{% block logo %}{% trans "Students Accounting Service" %}{% endblock logo %}
+
 {% block content %}
 
-<a href="{% url "groups_add" %}" class="btn btn-primary">Додати Групу</a>
+<a href="{% url "groups_add" %}" class="btn btn-primary">{% trans "Add Group" %}</a>
 
 <!-- Start Students Listing -->
 <table class="table">
@@ -23,10 +15,10 @@
     <tr>
       <th><a href="#">#</a></th>
 
-      <th><a href="#">Назва &uarr;</a></th>
-      <th><a href="#">Староста</a></th>
-
-      <th>Дії</th>
+      <th><a href="#">{% trans "The name of group" %} &uarr;</a></th>
+      <th><a href="#">{% trans "Lider" %}</a></th>
+      <th><a href="#">{% trans "Notes" %}</a></th>
+      <th>{% trans "Actions" %}</th>
     </tr>
   </thead>
   <tbody>
@@ -34,18 +26,18 @@
     <tr>
       <td>{{ forloop.counter }}</td>
 
-      <td><a href="{% url "groups_edit" group.id %}">{{ group.group_name }}</td>
-      <td><a href="{% url "groups_edit" group.id %}">{{ group.leader_name }}</td>
-
+      <td><a href="{% url "groups_edit" group.id %}">{{ group.title }}</td>
+      <td><a href="{% url "groups_edit" group.id %}">{{ group.leader }}</td>
+      <td><a href="{% url "groups_edit" group.id %}">{{ group.notes }}</td>
       <td>
         <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Дія
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">{% trans "Actions" %}
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="{% url "groups_edit" group.id %}">Редагувати</a></li>
-            <li><a href="/journal/{{ group.id }}">Відвідування</a></li>
-            <li><a href="{% url "groups_delete" group.id %}">Видалити</a></li>
+            <li><a href="{% url "groups_edit" group.id %}">{% trans "Edit" %}</a></li>
+            <li><a href="{% url "journal" %}?group={{group.id}}">{% trans "Journal" %}</a></li>
+            <li><a href="{% url "groups_delete" group.id %}">{% trans "Delete" %}</a></li>
           </ul>
         </div>
       </td>
@@ -63,7 +55,7 @@
 {% block footer %}
 <div class="row" id="footer">
   <div class="col-xs-12">
-    &copy; 2014 Сервіс Обліку Студентів
+    &copy; 2014 {% trans "Students Accounting Service" %}
   </div>
 </div>
 {% endblock footer %}

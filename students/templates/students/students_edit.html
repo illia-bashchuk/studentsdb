@@ -1,0 +1,25 @@
+{% extends "students/base.html" %}
+{% load i18n %}
+{% load static from staticfiles %}
+{% load crispy_forms_tags %}
+{% block meta_title %}{% trans "Edit Student" %}{% endblock meta_title %}
+{% block title %}{% trans "Edit Student" %}{% endblock title %}
+{% block logo %}{% trans "Students Accounting Service" %}{% endblock logo %}
+
+{% block status_message %}
+{% if form.errors %}
+    <div class="alert alert-warning" role="alert">
+        {% trans "Please correct the following errors" %}
+    </div>
+{% endif %}
+{% endblock status_message %} 
+{% block content %}
+{% crispy form %}
+{% endblock content %}
+{% block footer %}
+<div class="row" id="footer">
+    <div class="col-xs-12">
+        &copy; 2014 {% trans "Students Accounting Service" %}
+    </div>
+</div>
+{% endblock footer %}
