@@ -109,3 +109,6 @@ db.py
 
 # app logs
 studentsdb.log
+# database fixture
+demo_data.json
+initial_data.json
