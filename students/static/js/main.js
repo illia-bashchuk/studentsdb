@@ -90,7 +90,7 @@ function initEditStudentPage() {
                 var modal = $('#myModal'),
                     html = $(data), form = html.find('#content-column form');
                 modal.find('.modal-title').html(html.find('#content-column h2').text());
-                modal.find('.modal-body').html(form); 'Помилка на сервері. Спробуйте будь-ласка пізніше.'
+                modal.find('.modal-body').html(form);
                 //modal.modal('show');
                 // init our edit form
                 initEditStudentForm(form, modal);
