@@ -6,142 +6,159 @@
 <!DOCTYPE html>
 <html lang="uk">
 
-  <head>
-    <meta charset="UTF-8" />
-    <title>{% trans "Students Accounting Service" %} - {% block meta_title %}{% endblock meta_title %}</title>
-    <meta name="description" value="{% trans "App to manage students database"%}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="{{ PORTAL_URL }}{% static "css/main.css" %}" />
-    {% block extra_css %}{% endblock extra_css %}
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>{% trans "Students Accounting Service" %} - {% block meta_title %}{% endblock meta_title %}</title>
+  <meta name="description" value="{% trans "App to manage students database"%}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}" />
+  {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css" /> {% endcomment %}
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="{{ PORTAL_URL }}{% static "css/main.css" %}" />
+  {% block extra_css %}{% endblock extra_css %}
+</head>
 
-  <body>
+<body>
 
-    <!-- Start Container -->
-    <div class="container">
+  <!-- Start Container -->
+  <div class="container">
 
-      <!-- Start Header -->
+    <!-- Start Header -->
 
-      <div class="row" id="header">
-        <div class="col-xs-8">
-          <h1>{% trans "Students Accounting Service" %}</h1>
-        </div>
+    <div class="row justify-content-center" id="header">
+      <div class="col-8">
+        <h1>{% trans "Students Accounting Service" %}</h1>
+      </div>
 
+
+      <!-- User’s toolbar for authenticated users -->
         {% if user.is_authenticated %}
-
-            <div class="col-xs-4" id="group-selector">
-              <strong>{% trans "Group:" %}</strong>
-              <select>
-                <option value="">{% trans "All Students" %}</option>
-                {% for group in GROUPS %}
-                  <option value="{{ group.id }}"{% if group.selected %}selected="1"{% endif %}>{{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
-                {% endfor %}
-              </select>
-            </div>
-
-            <!-- User’s toolbar for authenticated users -->
-            <div class="col-xs-2" id="user-toolbar">
+          <div class="col-4 " >
+            <div class="mt-4 text-left align-middle" id="user-toolbasr">
               <a href="{% url "profile" %}">
                 {{ user.get_full_name|default:user.username }}
-              </a> | 
+              </a> |
               <a href="{% url "auth_logout" %}">{% trans "Logout" %}</a>
             </div>
-
-        {% else %}
-            <div class="col-xs-4" id="group-selector">
-              <!-- User’s toolbar for anonymous users -->
-              <div class="col-xs-6" id="user-toolbar">
-                <a href="{% url "auth_login" %}">{% trans "Login" %}</a> |
-                <a href="{% url "registration_register" %}">{% trans "Register" %}</a>
-              </div>
-            </div>
-        {% endif %}
-      </div>
-      <!-- End Header -->
-
-      <!-- Start subheader -->
-      <div class="row" id="sub-header">
-        <div class="col-xs-12">
-          <ul class="nav nav-tabs" role="tablist">
-            {% url "home" as url_home %} 
-            {% url "journal" as url_journal %} 
-            {% url "groups" as url_groups%}
-            {% url "contact_admin" as url_contact_admin%}
-            <li role="presentation" {% if request.path == url_home %}
-              class="active" {% endif %}><a href="{% url "home" %}">{% trans "Students" %}</a></li>
-            {% if user.is_authenticated %}  
-            <li role="presentation" {% if request.path == url_journal %}
-              class="active" {% endif %}><a href="{% url "journal" %}">{% trans "Journal" %}</a></li>
-            <li role="presentation" {% if request.path == url_groups %}
-              class="active" {% endif %}><a href="{% url "groups" %}">{% trans "Groups" %}</a></li>
-            {% endif %}
-
-            {% if perms.auth.add_user %}
-            <li role="presentation" {% if request.path == url_contact_admin %}
-              class="active" {% endif %}><a href="{% url "contact_admin" %}">{% trans "Contact" %}</a></li>
-            {% endif %}
-          </ul>
-        </div>
-      </div>
-      <!-- End subheader -->
-
-      <!-- Start Content Columns -->
-      <div class="row" id="content-columns">
-        <div class="col-xs-12" id="content-column">
-          {% block status_message %}
-          {% if request.GET.status_message %}
-          <div class="alert alert-warning" role="alert">{{ request.GET.status_message }}</div>
-          {% endif %}
-          {% if status_message %}
-          <div class="alert alert-warning" role="alert">{{ status_message }}</div>
-          {% endif %}
-          {% endblock %}
-          <div class="row">
-            <h2>{% block title %}{% endblock title %}</h2>
-            {% block content %}{% endblock content %}
           </div>
-        </div>
-      </div>
-      <!-- End Content Columns -->
+        {% else %}
+          <div class="col-xs-4" id="group-selector">
+            <!-- User’s toolbar for anonymous users -->
+            <div class="col-xs-6" id="user-toolbar">
+              <a href="{% url "auth_login" %}">{% trans "Login" %}</a> |
+              <a href="{% url "registration_register" %}">{% trans "Register" %}</a>
+            </div>
+          </div>
+        {% endif %}
 
-      <!-- Start Footer -->
-      {% block footer %}
-      
-      {% endblock footer %}
-      <!-- End Footer -->
 
     </div>
-    <!-- End Container -->
-    <!-- Modal Boilerplate -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-          aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"
-                      aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel"><!-- --></h4>
-            </div>
-            <div class="modal-body"><!-- --></div>
-            <div class="modal-footer"><!-- --></div>
-          </div>
+    <!-- End Header -->
+
+    <!-- Start subheader -->
+    <div class="row" id="sub-header">
+      <div class="col-8">
+        <ul class="nav nav-tabs" >
+          {% url "home" as url_home %}
+          {% url "journal" as url_journal %}
+          {% url "groups" as url_groups%}
+          {% url "contact_admin" as url_contact_admin%}
+          <li class="nav-item" ><a class="nav-link {% if request.path == url_home %}active{% endif %}" 
+              href="{% url "home" %}">{% trans "Students" %}</a></li>
+          {% if user.is_authenticated %}
+          <li class="nav-item" ><a class="nav-link {% if request.path == url_journal %}active{% endif %}" 
+              href="{% url "journal" %}">{% trans "Journal" %}</a></li>
+          <li class="nav-item" ><a class="nav-link {% if request.path == url_groups %}active{% endif %}"
+              href="{% url "groups" %}">{% trans "Groups" %}</a></li>
+          {% endif %}
+
+          {% if perms.auth.add_user %}
+          <li class="nav-item" ><a class="nav-link {% if request.path == url_contact_admin %}active{% endif %}"
+              href="{% url "contact_admin" %}">{% trans "Contact" %}</a></li>
+          {% endif %}
+
+          
+        </ul>
+        
+      </div>
+      {% if user.is_authenticated %}
+      <div class="col-4" id="group-selector">
+        <strong>{% trans "Group:" %}</strong>
+        <select>
+          <option value="">{% trans "All Students" %}</option>
+          {% for group in GROUPS %}
+          <option value="{{ group.id }}" {% if group.selected %}selected="1" {% endif %}>
+            {{ group.title }}{% if group.leader %}, {{ group.leader }}{% endif %}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      {% endif %}
+
+    </div>
+    <!-- End subheader -->
+
+    <!-- Start Content Columns -->
+    <div class="row" id="content-columns">
+      <div class="col-12" id="content-column">
+        {% block status_message %}
+        {% if request.GET.status_message %}
+        <div class="alert alert-warning" role="alert">{{ request.GET.status_message }}</div>
+        {% endif %}
+        {% if status_message %}
+        <div class="alert alert-warning" role="alert">{{ status_message }}</div>
+        {% endif %}
+        {% endblock %}
+        <div class="row">
+          <h2>{% block title %}{% endblock title %}</h2>
+          {% block content %}{% endblock content %}
         </div>
       </div>
-    <!-- Javascripts Inclusion -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
-    <script src="{% static "js/jquery.cookie.js" %}"></script>
-    <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="{% url "django.views.i18n.javascript_catalog" %}"></script>
-    <script src="{{ PORTAL_URL }}{% static "js/main.js" %}" defer></script>
-    {% block extra_js %}{% endblock extra_js %}
+    </div>
+    <!-- End Content Columns -->
 
-  </body>
+    <!-- Start Footer -->
+    {% block footer %}
+
+    {% endblock footer %}
+    <!-- End Footer -->
+
+  </div>
+  <!-- End Container -->
+  <!-- Modal Boilerplate -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">
+            <!-- -->
+          </h4>
+        </div>
+        <div class="modal-body">
+          <!-- -->
+        </div>
+        <div class="modal-footer">
+          <!-- -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Javascripts Inclusion -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+  <script src="{% static "js/jquery.cookie.js" %}"></script>
+  <script src="https://cdn.jsdelivr.net/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.0.0/js/bootstrap-datetimepicker.min.js">
+  </script>
+  <script src="{% url "django.views.i18n.javascript_catalog" %}"></script>
+  <script src="{{ PORTAL_URL }}{% static "js/main.js" %}" defer></script>
+  {% block extra_js %}{% endblock extra_js %}
+
+</body>
 
 </html>
