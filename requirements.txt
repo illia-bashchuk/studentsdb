@@ -1,8 +1,9 @@
 Django==1.7.2
-Pillow
-mysqlclient
-#pip install --only-binary :all: mysqlclient [for Windows]
-MySQL-python
+MySQL-python==1.2.5
+Pillow==2.6.1
 django-crispy-forms==1.4.0
-python-dateutil
+python-dateutil==2.3
 django-registration-redux==1.2
+python-social-auth==0.2.12
+django-coverage==1.2.4
+coverage==3.7.1
