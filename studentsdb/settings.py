@@ -13,23 +13,24 @@ import os
 
 from django.conf import global_settings
 
-from db import DATABASES
+from .env_settings import SECRET_KEY, DEBUG, TEMPLATE_DEBUG, ALLOWED_HOSTS
+from .env_settings import SOCIAL_AUTH_FACEBOOK_SECRET, SOCIAL_AUTH_FACEBOOK_KEY
+from .env_settings import DATABASES, STATIC_URL, MEDIA_URL, MEDIA_ROOT
+from .env_settings import ADMIN_EMAIL, EMAIL_HOST, EMAIL_PORT, EMAIL_USE_SSL
+from .env_settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS
+#from .env_settings import PORTAL_URL
+
+# in dev envrironment we may not have STATIC_ROOT defined
+try:
+    from .env_settings import STATIC_ROOT
+except ImportError:
+    pass
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'en7g=ih_(ewxe2u^&j3kqk%s^=yx*!*d@6eriikmv_@3e$(@&f'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -66,7 +67,7 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -82,11 +83,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/static/'
-
 # Context processor
 
 TEMPLATE_CONTEXT_PROCESSORS = \
@@ -94,6 +90,7 @@ TEMPLATE_CONTEXT_PROCESSORS = \
         "django.core.context_processors.request",
         "studentsdb.context_processors.students_processors",
         "students.context_processors.groups_processor",
+        "students.context_processors.year",
     )
 
 # add project templates directory as Django does not
@@ -103,16 +100,6 @@ TEMPLATE_DIRS = (
 )
 # PORTAL_URL = 'http://127.0.0.1:8000'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
-
-ADMIN_EMAIL = 'illia.bashchuk@gmail.com'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'ilvasilich@gmail.com'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 

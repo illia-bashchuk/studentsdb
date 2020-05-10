@@ -10,7 +10,7 @@
     <a href="{% url "students_add" %}" class="btn btn-primary">{% trans "Add Student" %}</a>
   {% endif %}
         <!-- Start Students Listing -->
-        <table class="table">
+        <table class="table ">
             {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
           <thead>
             <tr>
@@ -98,10 +98,4 @@
 {% include "students/pagination.html" %}
 
 {% endblock content %}
-{% block footer %}
-      <div class="row" id="footer">
-        <div class="col-xs-12">
-          &copy; 2014 {% trans "Students Accounting Service" %}  
-        </div>
-      </div>
-{% endblock footer %}
+

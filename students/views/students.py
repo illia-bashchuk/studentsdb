@@ -9,6 +9,7 @@ from crispy_forms.layout import Submit, Layout, Div, Fieldset, Button, Field, HT
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.core.urlresolvers import reverse
 from django.forms import ModelForm
+from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DeleteView, ListView, UpdateView
@@ -145,7 +146,6 @@ class StudentUpdateForm(ModelForm):
                                           kwargs={'pk': kwargs['instance'].id})
         self.helper.form_method = 'POST'
         self.helper.form_class = 'form-horizontal'
-
         # set form field properties
         self.helper.help_text_inline = True
         self.helper.html5_required = True
@@ -154,12 +154,11 @@ class StudentUpdateForm(ModelForm):
         # add buttons
         self.helper.layout.append(Field(
             HTML('<div class="form-group">'
-                 '<label class="col-sm-2 control-label" ></label >'
-                 '<div class="controls col-sm-8 text-center">'),
+                 '<div class="controls col-sm-8 text-left ml-4">'),
             Submit('add_button', _(u"Save"),
-                   css_class="btn btn-primary"),
+                   css_class=""),
             Submit('cancel_button', _(u"Cancel"),
-                   css_class="btn btn-link"),
+                   css_class=""),
             HTML('</div></div>')))
 
 

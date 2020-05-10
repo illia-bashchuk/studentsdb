@@ -1,20 +1,26 @@
 {% if is_paginated %}
 {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
-<nav>
-  <ul class="pagination">
-    <li>
-      <a href="?page=1{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">&laquo;</a>
-    </li>
-    {% for p in paginator.page_range %}
-    <li {% if page_obj.number == p %}class="active"{% endif %}>
-      <a href="?page={{ p }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">{{ p }}</a>
-    </li>
-    {% endfor %}
-    <li>
-      <a href="?page={{ paginator.num_pages }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">
-        &raquo;</a>
-    </li>
-  </ul>
-</nav>
+<div class="container">
+  <nav>
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link"
+          href="?page=1{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">&laquo;</a>
+      </li class="page-item">
+      {% for p in paginator.page_range %}
+      <li class="page-item {% if page_obj.number == p %}active{% endif %}">
+        <a class="page-link"
+          href="?page={{ p }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">{{ p }}</a>
+      </li>
+      {% endfor %}
+      <li class="page-item">
+        <a class="page-link"
+          href="?page={{ paginator.num_pages }}{%if order_by %}&amp;order_by={{ order_by }}{% endif %}{% if reverse %}&amp;reverse={{ reverse }}{% endif %}{% if cur_month %}&amp;month={{ cur_month }}{% endif %}">
+          &raquo;</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
 {% endwith %}
 {% endif %}

@@ -34,7 +34,14 @@
                 <td>{{ user.stprofile.mobile_phone }}</td>
             </tr>
         {% endif %}
-
+            <tr>
+                <td>{% trans "Mobile Phone" %}:</td>
+                <td>{{ user.stprofile.home_phone }}</td>
+            </tr>
+            <tr>
+                <td>{% trans "Mobile Phone" %}:</td>
+                <td> <img src="{{ user.stprofile.photo.url }}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="{{ user.username }}"> </td>
+            </tr>
 
         {% if user.date_joined %}
             <tr>
