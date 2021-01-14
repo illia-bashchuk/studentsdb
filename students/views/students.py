@@ -1,3 +1,13 @@
+from ..util import get_current_group, paginate
+from ..models.students import Student
+from ..models.groups import Group
+from django.views.generic import DeleteView, ListView, UpdateView
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django import forms
+from django.forms import ModelForm
+from django.core.urlresolvers import reverse
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.utils.translation import ugettext as _
 from datetime import datetime
 from django.utils.decorators import method_decorator
@@ -6,17 +16,6 @@ from django.contrib.auth.decorators import login_required
 from crispy_forms.bootstrap import FormActions
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Div, Fieldset, Button, Field, HTML
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.core.urlresolvers import reverse
-from django.forms import ModelForm
-from django import forms
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.views.generic import DeleteView, ListView, UpdateView
-
-from ..models.groups import Group
-from ..models.students import Student
-from ..util import get_current_group, paginate
 
 
 class StudentList(ListView):

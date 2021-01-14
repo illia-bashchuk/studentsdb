@@ -12,6 +12,7 @@ class StProfileInline(admin.StackedInline):
 class UserAdmin(auth_admin.UserAdmin):
     inlines = (StProfileInline,)
 
-    # replace existing User admin form
+
+# replace existing User admin form
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

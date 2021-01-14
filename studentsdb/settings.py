@@ -18,7 +18,7 @@ from .env_settings import SOCIAL_AUTH_FACEBOOK_SECRET, SOCIAL_AUTH_FACEBOOK_KEY
 from .env_settings import DATABASES, STATIC_URL, MEDIA_URL, MEDIA_ROOT
 from .env_settings import ADMIN_EMAIL, EMAIL_HOST, EMAIL_PORT, EMAIL_USE_SSL
 from .env_settings import EMAIL_HOST_USER, EMAIL_HOST_PASSWORD, EMAIL_USE_TLS
-#from .env_settings import PORTAL_URL
+
 
 # in dev envrironment we may not have STATIC_ROOT defined
 try:
@@ -66,7 +66,6 @@ WSGI_APPLICATION = 'studentsdb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-
 
 
 # Internationalization
